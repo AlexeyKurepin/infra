@@ -1,0 +1,26 @@
+{
+ "builders": [
+ {
+ "type": "googlecompute",
+ "project_id": "silken-agent-373717"
+,
+ "image_name": "reddit-base-{{timestamp}}",
+ "source_image": "ubuntu-2004-focal-v20230104"
+,
+ "zone": "us-east1-b",
+ "ssh_username": "appuser",
+ "machine_type": "e2-micro"
+ }
+ ],
+ "provisioners": [
+  {
+ "type": "shell",
+ "script": "scripts/install_mongodb.sh",
+ "execute_command": "sudo {{.Path}}"
+ },
+ {
+ "type": "shell",
+ "script": "scripts/install_ruby.sh"
+ }
+ ]
+}
